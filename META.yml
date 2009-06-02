@@ -23,7 +23,7 @@ no_index:
 provides:
   MooseX::Traits::Pluggable:
     file: lib/MooseX/Traits/Pluggable.pm
-    version: 0.02
+    version: 0.03
 requires:
   Class::MOP: 0.84
   List::MoreUtils: 0
@@ -34,4 +34,4 @@ requires:
   namespace::autoclean: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.02
+version: 0.03
