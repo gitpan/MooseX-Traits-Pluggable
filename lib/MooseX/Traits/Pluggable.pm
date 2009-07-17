@@ -10,7 +10,7 @@ use Moose::Util qw/find_meta/;
 
 with 'MooseX::Traits' => { excludes => [qw/new_with_traits apply_traits/] };
 
-our $VERSION   = '0.05';
+our $VERSION   = '0.06';
 our $AUTHORITY = 'id:RKITOVER';
 
 # stolen from MX::Object::Pluggable
@@ -76,9 +76,10 @@ sub _resolve_traits {
 sub new_with_traits {
     my $class = shift;
 
-    my ($hashref, %args) = 0;
-    if (ref($_[0]) eq 'HASH') {
-        %args    = %{ +shift };
+    my ($hashref, %args, @others) = 0;
+    if (ref($_[-1]) eq 'HASH') {
+        %args    = %{ +pop };
+        @others  = @_;
         $hashref = 1;
     } else {
         %args    = @_;
@@ -112,7 +113,7 @@ sub new_with_traits {
     confess "$class does not have a constructor defined via the MOP?"
       if !$constructor;
 
-    return $class->$constructor($hashref ? \%args : %args);
+    return $class->$constructor($hashref ? (@others, \%args) : %args);
 }
 
 sub apply_traits {

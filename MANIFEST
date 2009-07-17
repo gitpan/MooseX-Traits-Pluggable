@@ -19,4 +19,5 @@ README
 t/00-load.t
 t/author/pod.t
 t/basic.t
+t/positional_args_and_hr.t
 t/subclass.t
