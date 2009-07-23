@@ -11,7 +11,6 @@ BEGIN {
 requires 'Class::MOP' => '0.84';
 requires 'Moose';
 requires 'Moose::Role';
-requires 'MooseX::Traits' => '0.06';
 requires 'Scalar::Util';
 requires 'namespace::autoclean';
 requires 'List::MoreUtils';
@@ -24,4 +23,8 @@ author_tests 't/author';
 
 auto_provides;
 auto_install;
+
+resources repository =>
+    'git://github.com/rkitover/moosex-traits-pluggable.git';
+
 WriteAll();

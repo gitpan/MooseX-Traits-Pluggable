@@ -22,16 +22,16 @@ no_index:
 provides:
   MooseX::Traits::Pluggable:
     file: lib/MooseX/Traits/Pluggable.pm
-    version: 0.06
+    version: 0.07
 requires:
   Class::MOP: 0.84
   List::MoreUtils: 0
   Moose: 0
   Moose::Autobox: 0
   Moose::Role: 0
-  MooseX::Traits: 0.06
   Scalar::Util: 0
   namespace::autoclean: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.06
+  repository: git://github.com/rkitover/moosex-traits-pluggable.git
+version: 0.07
