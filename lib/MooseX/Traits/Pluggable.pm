@@ -5,10 +5,9 @@ use Moose::Role;
 use Scalar::Util qw/blessed reftype/;
 use List::MoreUtils 'uniq';
 use Carp;
-use Moose::Autobox;
 use Moose::Util qw/find_meta/;
 
-our $VERSION   = '0.07';
+our $VERSION   = '0.08';
 our $AUTHORITY = 'id:RKITOVER';
 
 # stolen from MX::Object::Pluggable
@@ -104,7 +103,7 @@ sub new_with_traits {
     $args{_original_class_name} = $class;
 
     if (my $traits = delete $args{traits}) {
-        my @traits = $traits->flatten;
+        my @traits = ref($traits) ? @$traits : ($traits);
         if(@traits){
             $args{_traits} = \@traits;
             my @resolved_traits = $class->_resolve_traits(@traits);
@@ -135,7 +134,7 @@ sub new_with_traits {
 sub apply_traits {
     my ($self, $traits, $rebless_params) = @_;
 
-    my @traits = $traits->flatten;
+    my @traits = ref($traits) ? @$traits : ($traits);
 
     if (@traits) {
         my @resolved_traits = $self->_resolve_traits(@traits);
