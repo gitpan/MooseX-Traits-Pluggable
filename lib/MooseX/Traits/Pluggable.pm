@@ -7,7 +7,7 @@ use List::MoreUtils 'uniq';
 use Carp;
 use Moose::Util qw/find_meta/;
 
-our $VERSION   = '0.09';
+our $VERSION   = '0.10';
 our $AUTHORITY = 'id:RKITOVER';
 
 # stolen from MX::Object::Pluggable
@@ -51,15 +51,19 @@ sub _find_trait {
 
 sub _transform_trait {
     my ($class, $name) = @_;
-    my $namespace = $class->meta->find_attribute_by_name('_trait_namespace');
     my $base;
-    if($namespace->has_default) {
-        $base = $namespace->default;
-        if (ref($base) && reftype($base) eq 'CODE') {
-            $base = $base->();
+    if ($class->can('_trait_namespace')) {
+        $base = $class->_trait_namespace($name);
+    }
+    else {
+        my $namespace = find_meta($class)->find_attribute_by_name('_trait_namespace');
+        if($namespace->has_default) {
+            $base = $namespace->default;
+            if (ref($base) && reftype($base) eq 'CODE') {
+                $base = $class->$base($name);
+            }
         }
     }
-
     return $name unless $base;
     return $1 if $name =~ /^[+](.+)$/;
 
@@ -90,7 +94,11 @@ sub _resolve_traits {
 
 sub new_with_traits {
     my $class = shift;
+    $class->_build_instance_with_traits($class, @_);
+}
 
+sub _build_instance_with_traits {
+    my ($this_class, $class) = (shift, shift);
     my ($hashref, %args, @others) = 0;
     if (ref($_[-1]) eq 'HASH') {
         %args    = %{ +pop };
@@ -106,7 +114,7 @@ sub new_with_traits {
         my @traits = ref($traits) ? @$traits : ($traits);
         if(@traits){
             $args{_traits} = \@traits;
-            my @resolved_traits = $class->_resolve_traits(@traits);
+            my @resolved_traits = $this_class->_resolve_traits(@traits);
             $args{_resolved_traits} = \@resolved_traits;
 
             my $meta = $class->meta->create_anon_class(
@@ -288,8 +296,7 @@ Tomas Doran, C<< <bobtfish@bobtfish.net> >>
 =head1 COPYRIGHT & LICENSE
 
 Copyright (c) 2009 - 2010 by the aforementioned
-L<DBIx::Class::Schema::Loader/AUTHOR> and
-L<DBIx::Class::Schema::Loader/CONTRIBUTORS>.
+L</AUTHOR> and L</CONTRIBUTORS>.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
