@@ -32,6 +32,7 @@ TRAIT SEARCH
       use parent 'Class1';
       with 'MooseX::Traits';
       has '+_trait_namespace' => (default => '+Trait');
+      has '+_traits_behave_like_roles' => (default => 1);
 
       package Class2::Trait::Bar;
       use Moose::Role;
@@ -61,6 +62,19 @@ NAMESPACE ARRAYS
     Will search in the "class_precedence_list" for "::Trait::TheTrait" and
     "::Role::TheTrait" and then for "ExtraNS::Trait::TheTrait".
 
+CORRECT ROLE BEHAVIOR
+    By default, a method from a role will override a class method, this
+    however is not the behavior one expects when applying a Moose role using
+    the normal methods.
+
+    If you want the behavior to be consistent with Moose roles, then use
+    this configuration attribute in your class:
+
+      has '+_traits_behave_like_roles' => (default => 1);
+
+    This may or may not become the default in the future, for now you have
+    to ask for it for backward compatibility reasons.
+
 EXTRA ATTRIBUTES
   _original_class_name
     When traits are applied to your class or instance, you get an anonymous
@@ -75,7 +89,7 @@ EXTRA ATTRIBUTES
     List of traits applied to the instance resolved to full package names.
 
 SEE ALSO
-    MooseX::Traits, MooseX::Object::Pluggable
+    MooseX::Traits, MooseX::Object::Pluggable, CatalystX::Component::Traits
 
 BUGS
     Please report any bugs or feature requests to
@@ -85,25 +99,6 @@ BUGS
     . I will be notified, and then you'll automatically be notified of
     progress on your bug as I make changes.
 
-SUPPORT
-    More information at:
-
-    *   RT: CPAN's request tracker
-
-        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=MooseX-Traits-Pluggable>
-
-    *   AnnoCPAN: Annotated CPAN documentation
-
-        <http://annocpan.org/dist/MooseX-Traits-Pluggable>
-
-    *   CPAN Ratings
-
-        <http://cpanratings.perl.org/d/MooseX-Traits-Pluggable>
-
-    *   Search CPAN
-
-        <http://search.cpan.org/dist/MooseX-Traits-Pluggable/>
-
 AUTHOR
     Rafael Kitover "<rkitover@cpan.org>"
 
@@ -111,8 +106,7 @@ CONTRIBUTORS
     Tomas Doran, "<bobtfish@bobtfish.net>"
 
 COPYRIGHT & LICENSE
-    Copyright (c) 2009 - 2010 by the aforementioned "AUTHOR" and
-    "CONTRIBUTORS".
+    Copyright (c) 2014 by the aforementioned "AUTHOR" and "CONTRIBUTORS".
 
     This library is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.

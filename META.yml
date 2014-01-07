@@ -1,15 +1,25 @@
 ---
 abstract: 'trait loading and resolution for Moose'
 author:
-  - 'Rafael Kitover C<< <rkitover@cpan.org> >>'
+  - 'Rafael Kitover <rkitover@cpan.org>'
 build_requires:
-  ExtUtils::MakeMaker: 6.42
+  File::Spec: 0
+  Foo: 0
+  IO::Handle: 0
+  IPC::Open3: 0
+  Moose: 0
+  NS1: 0
+  Parent: 0
   Test::Exception: 0
   Test::More: 0
+  base: 0
+  perl: 5.006
+  strict: 0
+  warnings: 0
 configure_requires:
-  ExtUtils::MakeMaker: 6.42
-distribution_type: module
-generated_by: 'Module::Install version 1.00'
+  ExtUtils::MakeMaker: 6.30
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 5.008, CPAN::Meta::Converter version 2.132830'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -17,20 +27,19 @@ meta-spec:
 name: MooseX-Traits-Pluggable
 no_index:
   directory:
-    - inc
     - t
-provides:
-  MooseX::Traits::Pluggable:
-    file: lib/MooseX/Traits/Pluggable.pm
-    version: 0.10
 requires:
-  Class::MOP: 0.84
+  Carp: 0
+  Class::Load: 0
   List::MoreUtils: 0
-  Moose: 0
   Moose::Role: 0
+  Moose::Util: 0
   Scalar::Util: 0
   namespace::autoclean: 0
 resources:
+  bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=MooseX-Traits-Pluggable
+  homepage: http://metacpan.org/release/MooseX-Traits-Pluggable
   license: http://dev.perl.org/licenses/
   repository: git://github.com/rkitover/moosex-traits-pluggable.git
-version: 0.10
+version: 0.11
+x_authority: cpan:RKITOVER
