@@ -1,6 +1,6 @@
 package MooseX::Traits::Pluggable;
 {
-  $MooseX::Traits::Pluggable::VERSION = '0.11';
+  $MooseX::Traits::Pluggable::VERSION = '0.12';
 }
 
 use namespace::autoclean;
@@ -335,6 +335,9 @@ Rafael Kitover C<< <rkitover@cpan.org> >>
 =head1 CONTRIBUTORS
 
 Tomas Doran, C<< <bobtfish@bobtfish.net> >>
+Fitz Elliott, C<< <fitz.elliott@gmail.com> >>
+Andreas Marienborg, C<< <andreas.marienborg@gmail.com> >>
+Alexander Hartmaier, C<< <abraxxa@cpan.org> >>
 
 =head1 COPYRIGHT & LICENSE
 

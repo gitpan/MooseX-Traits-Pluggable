@@ -31,19 +31,16 @@ my %WriteMakefileArgs = (
   },
   "TEST_REQUIRES" => {
     "File::Spec" => 0,
-    "Foo" => 0,
     "IO::Handle" => 0,
     "IPC::Open3" => 0,
     "Moose" => 0,
-    "NS1" => 0,
-    "Parent" => 0,
     "Test::Exception" => 0,
     "Test::More" => 0,
     "base" => 0,
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.11",
+  "VERSION" => "0.12",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -54,15 +51,12 @@ my %FallbackPrereqs = (
   "Carp" => 0,
   "Class::Load" => 0,
   "File::Spec" => 0,
-  "Foo" => 0,
   "IO::Handle" => 0,
   "IPC::Open3" => 0,
   "List::MoreUtils" => 0,
   "Moose" => 0,
   "Moose::Role" => 0,
   "Moose::Util" => 0,
-  "NS1" => 0,
-  "Parent" => 0,
   "Scalar::Util" => 0,
   "Test::Exception" => 0,
   "Test::More" => 0,

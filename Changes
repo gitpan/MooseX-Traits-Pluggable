@@ -1,5 +1,8 @@
 Revision history for MooseX::Traits::Pluggable
 
+0.12 2014-01-11 15:52:52
+    - fix bogus prereqs, PR from felliott (Fitz Elliott)
+
 0.11 2014-01-07 16:04:55
     - add +_traits_behave_like_roles config attribute which prevents roles from
       overriding class methods, matching the behavior of regular Moose roles

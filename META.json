@@ -43,12 +43,9 @@
       "test" : {
          "requires" : {
             "File::Spec" : "0",
-            "Foo" : "0",
             "IO::Handle" : "0",
             "IPC::Open3" : "0",
             "Moose" : "0",
-            "NS1" : "0",
-            "Parent" : "0",
             "Test::Exception" : "0",
             "Test::More" : "0",
             "base" : "0",
@@ -74,7 +71,7 @@
          "web" : "http://github.com/rkitover/moosex-traits-pluggable"
       }
    },
-   "version" : "0.11",
+   "version" : "0.12",
    "x_authority" : "cpan:RKITOVER"
 }
 
